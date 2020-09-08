@@ -5,6 +5,6 @@ const app = require('./app')(sequelize);
 const PORT = process.env.PORT || 3001;
 
 (async () => {
-  await sequelize.sync({force: true});
+  await sequelize.sync({force: false});
   app.listen(PORT, () => console.info(`Listening on port ${PORT}`));
 })();

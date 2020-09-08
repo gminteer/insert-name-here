@@ -33,5 +33,6 @@ module.exports = (sequelize) =>
       },
       sequelize,
       modelName: 'User',
+      underscored: true,
     }
   );

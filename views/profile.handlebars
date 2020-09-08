@@ -1,0 +1,29 @@
+<div>
+  <section>
+    {{#if (has_name this)}}
+    <h2> {{full_name this}} ({{username}})</h2>
+    {{else}}
+    <h2>{{username}}</h2>
+    {{/if}}
+    Member for {{relative_time createdAt}}
+    {{#if profilePicture}}
+    <img src="{{profilePicture}}" alt="{{username}}'s profile picture">
+    {{/if}}
+  </section>
+  <section>
+    <h3>Recent Posts</h3>
+    <ul>
+      <li>Data</li>
+      <li>Goes</li>
+      <li>Here</li>
+    </ul>
+  </section>
+  <section>
+    <h3>Recent Comments</h3>
+    <ul>
+      <li>Data</li>
+      <li>Goes</li>
+      <li>Here</li>
+    </ul>
+  </section>
+</div>
