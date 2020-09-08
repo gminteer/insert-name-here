@@ -32,6 +32,7 @@ module.exports = {
     'require-jsdoc': ['off'],
     'vars-on-top': ['warn'],
     'no-unused-vars': ['error', {varsIgnorePattern: '_'}],
+    'security/detect-object-injection': ['off'],
   },
   overrides: [
     {

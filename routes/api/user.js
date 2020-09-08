@@ -24,16 +24,14 @@ module.exports = ({user: userSvc}, {auth}, handleErr) => {
 
   router.post('/', auth.mustNotBeLoggedIn, async (req, res) => {
     try {
-      const {username, password} = req.body;
-      const user = await userSvc.create(username, password);
+      const user = await userSvc.create(req.body);
       req.session.save(() => {
-        const {id, username} = user;
         req.session.user = user;
         req.session.isLoggedIn = true;
         return res
           .status(201)
-          .append('Location', id)
-          .json({user: {id, username}, message: 'Login successful'});
+          .append('Location', user.id)
+          .json({username: user.username, message: 'Login successful'});
       });
     } catch (err) {
       handleErr(req, res, err);
@@ -43,11 +41,9 @@ module.exports = ({user: userSvc}, {auth}, handleErr) => {
   router.put('/:user_id', auth.mustOwnEndpoint, async (req, res) => {
     const id = req.params.user_id;
     try {
-      const {username, password} = req.body;
-      if (!username && !password) return res.status(400).json({message: 'Nothing to update'});
-      const user = await userSvc.update(id, username, password);
+      const user = await userSvc.update(id, req.body);
       if (!user) return res.status(404).json({message: `No user found with id: "${id}"`});
-      return res.status(200).json({message: 'Update successful', user});
+      return res.json({message: 'Update successful', user});
     } catch (err) {
       handleErr(req, res, err);
     }
@@ -57,16 +53,12 @@ module.exports = ({user: userSvc}, {auth}, handleErr) => {
     const id = req.params.user_id;
     try {
       const user = await userSvc.delete(id);
-      if (!user) {
-        if (process.env.NODE_ENV !== 'production') {
-          return res.status(500).json({
-            message: `No user found with id: "${id}", but id matches currently logged in user. Something went horribly wrong :(`,
-          });
-        } else {
-          return res.sendStatus(500);
-        }
+      if (!user && process.env.NODE_ENV !== 'production') {
+        return res.status(500).json({
+          message: `No user found with id: "${id}", but id matches currently logged in user. Database is likely corrupt.`,
+        });
       }
-      req.session.destroy(() => res.status(200).json({message: 'User deleted', user}));
+      req.session.destroy(() => res.json({message: 'User deleted', user}));
     } catch (err) {
       handleErr(req, res, err);
     }
