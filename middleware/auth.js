@@ -1,4 +1,4 @@
-module.exports = (services) => ({
+module.exports = () => ({
   mustNotBeLoggedIn(req, res, next) {
     if (req.session.isLoggedIn) return res.status(400).json({message: 'Already logged in'});
     next();
