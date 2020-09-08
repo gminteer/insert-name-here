@@ -1,9 +1,11 @@
+const exphbs = require('express-handlebars');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
+const hbs = exphbs.create({helpers: require('./helpers')});
 
 module.exports = (sequelize) => {
   const models = require('./models')(sequelize);
@@ -25,6 +27,9 @@ module.exports = (sequelize) => {
   app.use(express.static(path.join(__dirname, 'dist')));
   app.use(express.static(path.join(__dirname, 'static')));
   app.use(routes);
+
+  app.engine('handlebars', hbs.engine);
+  app.set('view engine', 'handlebars');
 
   return app;
 };
