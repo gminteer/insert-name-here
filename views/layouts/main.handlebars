@@ -8,6 +8,25 @@
 </head>
 
 <body>
+  <header>
+    <h1><a href="/">&#x7B;&#x7B;insert-name-here&#x7D;&#x7D;</a></h1>
+    <nav>
+      <ul>
+        {{#if session.isLoggedIn}}
+        <li>
+          <a href="/user/profile/{{session.user.id}}">{{session.user.username}}</a>
+        </li>
+        <li>
+          <a href="/user/logout">Log Out</a>
+        </li>
+        {{else}}
+        <li>
+          <a href="/user/login">Log in / sign up</a>
+        </li>
+        {{/if}}
+      </ul>
+    </nav>
+  </header>
   {{{body}}}
 </body>
 

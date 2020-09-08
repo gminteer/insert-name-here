@@ -48,12 +48,12 @@ module.exports = {
     },
     {
       files: ['static/**/*.js'],
-      plugins: ['compat'],
+      // plugins: ['compat'], something's up with eslint-plugin-compat "Unknown browser query `Baidu all`"
       env: {
         node: false,
         browser: true,
       },
-      extends: ['plugin:compat/recommended'],
+      // extends: ['plugin:compat/recommended'],
     },
   ],
 };

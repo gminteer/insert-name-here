@@ -1,0 +1,36 @@
+<div>
+  {{#if login}}
+  <p>Don't have an account? Sign up <a href="/user/signup">here</a>!</p>
+  <form id="login-signup" data-type="login">
+    {{else}}
+    <p>Already have an account? Log in <a href="/user/login">here</a>!</p>
+    <form id="login-signup" data-type="signup">
+      {{/if}}
+      <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" autocomplete="username">
+      </div>
+      {{#unless login}}
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" autocomplete="email">
+      </div>
+      {{/unless}}
+      <div>
+        <label for="password">Password</label>
+        {{#if login}}
+        <input type="password" name="password" id="password" autocomplete="current-password">
+        {{else}}
+        <input type="password" name="password" id="password" autocomplete="new-password">
+        {{/if}}
+      </div>
+      {{#unless login}}
+      <div>
+        <label for="confirm-password">Confirm password</label>
+        <input type="password" name="password" id="confirm-password" autocomplete="new-password">
+      </div>
+      {{/unless}}
+      <button type="submit">Log In</button>
+    </form>
+    <script src="/assets/js/user/login-signup.js" type="module"></script>
+</div>

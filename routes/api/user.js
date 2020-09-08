@@ -31,7 +31,7 @@ module.exports = ({user: userSvc}, {auth}, handleErr) => {
         return res
           .status(201)
           .append('Location', user.id)
-          .json({username: user.username, message: 'Login successful'});
+          .json({user, message: 'Login successful'});
       });
     } catch (err) {
       handleErr(req, res, err);
