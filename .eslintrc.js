@@ -55,5 +55,11 @@ module.exports = {
       },
       // extends: ['plugin:compat/recommended'],
     },
+    {
+      files: ['./postcss.config.js'],
+      rules: {
+        'node/no-unpublished-require': ['error', {allowModules: devDependencies}],
+      },
+    },
   ],
 };

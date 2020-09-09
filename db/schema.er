@@ -1,0 +1,23 @@
+#entities
+[users]
+*id {label: "int, not null"}
+username {label: "varchar(30), unique, not null"}
+email {label: "varchar, unique, not null"}
+password {label: "varchar, not null"}
+first_name {label: "varchar"}
+last_name {label: "varchar"}
+created_at {label: "datetime"}
+updated_at {label: "datetime"}
+
+[profiles]
+*id {label: "int, not null"}
+github {label: "varchar, isUrl"}
+linked_in {label: "varchar, isUrl"}
+picture {label: "varchar, isUrl"}
+profile {label: "varchar, isUrl"}
+resume {label: "varchar, isUrl"}
+created_at {label: "datetime"}
+updated_at {label: "datetime"}
++user_id {label: "int"}
+
+users 1--0 profiles

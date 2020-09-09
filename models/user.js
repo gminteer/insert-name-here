@@ -18,7 +18,6 @@ module.exports = (sequelize) =>
       password: {type: DataTypes.STRING, allowNull: false},
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
-      profilePicture: {type: DataTypes.STRING, validate: {isUrl: true}},
     },
     {
       hooks: {
@@ -32,7 +31,7 @@ module.exports = (sequelize) =>
         },
       },
       sequelize,
-      modelName: 'User',
+      modelName: 'user',
       underscored: true,
     }
   );
