@@ -1,0 +1,88 @@
+@mixin color-helpers($name, $color) {
+  .has-background-#{$name} {
+    background-color: $color;
+  }
+  .has-text-#{$name} {
+    color: $color;
+  }
+}
+
+$color-scheme: (
+  'burnt-sienna': #dd6e42,
+  'dutch-white': #e8dab2,
+  'cadet': #4f6d7a,
+  'columbia-blue': #c0d6df,
+  'platinum': #eaeaea,
+);
+
+@each $name, $color in $color-scheme {
+  @include color-helpers($name, $color);
+}
+
+// these directly change Bulma defaults
+$primary: map-get(
+  $map: $color-scheme,
+  $key: 'burnt-sienna',
+);
+$primary-invert: $white;
+
+$scheme-main: map-get(
+  $map: $color-scheme,
+  $key: 'platinum',
+);
+$scheme-main-bis: adjust-color(
+  $color: $scheme-main,
+  $lightness: -3%,
+);
+$scheme-main-ter: adjust-color(
+  $color: $scheme-main,
+  $lightness: -6%,
+);
+
+// these do not
+$primary-light: map-get(
+  $map: $color-scheme,
+  $key: 'dutch-white',
+);
+$secondary: map-get(
+  $map: $color-scheme,
+  $key: 'cadet',
+);
+$secondary-light: map-get(
+  $map: $color-scheme,
+  $key: 'columbia-blue',
+);
+
+// no direct color assignments past this line
+$primary-bis: adjust-color(
+  $color: $primary,
+  $lightness: -3%,
+);
+$primary-ter: adjust-color(
+  $color: $primary,
+  $lightness: -6%,
+);
+$primary-light-bis: adjust-color(
+  $color: $primary-light,
+  $lightness: -3%,
+);
+$primary-light-ter: adjust-color(
+  $color: $primary-light,
+  $lightness: -6%,
+);
+$secondary-bis: adjust-color(
+  $color: $secondary,
+  $lightness: -3%,
+);
+$secondary-ter: adjust-color(
+  $color: $secondary,
+  $lightness: -6%,
+);
+$secondary-light-bis: adjust-color(
+  $color: $secondary-light,
+  $lightness: -3%,
+);
+$secondary-light-ter: adjust-color(
+  $color: $secondary-light,
+  $lightness: -6%,
+);

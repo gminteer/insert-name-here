@@ -11,9 +11,9 @@
 <body>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <h1 class="navbar-item title is-1">
-        <a href="/">&#x7B;&#x7B;insert-name-here&#x7D;&#x7D;</a>
-      </h1>
+      <a class="navbar-item title is-1 mb-0" href="/">
+        <h1>&#x7B;&#x7B;insert-name-here&#x7D;&#x7D;</h1>
+      </a>
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -32,7 +32,8 @@
         {{#if session.isLoggedIn}}
         <a class="navbar-item subtitle is-3" href="/user/logout">Log Out</a>
         {{else}}
-        <a class="navbar-item subtitle is-3" href="/user/login">Log in / sign up</a>
+        <a class="navbar-item subtitle is-3 mb-0" href="/user/login">Log in</a>
+        <a class="navbar-item subtitle is-3" href="/user/signup">Sign up</a>
         {{/if}}
       </div>
     </div>
