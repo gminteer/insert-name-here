@@ -1,0 +1,20 @@
+@mixin color-helpers($name, $color) {
+  .has-background-#{$name} {
+    background-color: $color;
+  }
+  .has-text-#{$name} {
+    color: $color;
+  }
+}
+
+$color-scheme: (
+  'burnt-sienna': #dd6e42,
+  'dutch-white': #e8dab2,
+  'cadet': #4f6d7a,
+  'columbia-blue': #c0d6df,
+  'platinum': #eaeaea,
+);
+
+@each $name, $color in $color-scheme {
+  @include color-helpers($name, $color);
+}

@@ -5,7 +5,8 @@ form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const username = document.querySelector('#username').value.trim();
   const password = document.querySelector('#password').value;
-  const email = document.querySelector('#email').value;
+  const $email = document.querySelector('#email');
+  const email = $email ? $email.value : null;
   if (!isLogin && password !== document.querySelector('#confirm-password').value) {
     // TODO: let user know about typo
     return;

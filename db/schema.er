@@ -18,6 +18,41 @@ profile {label: "varchar, isUrl"}
 resume {label: "varchar, isUrl"}
 created_at {label: "datetime"}
 updated_at {label: "datetime"}
++user_id {label: "int, not null"}
+
+[skillranks]
+*skill {label: "enum"}
+rank {label: "int, not null, min 0, max 10"}
++skillset_id {label: "int, not null"}
+
+[skillsets]
+*id {label: "int, not null"}
 +user_id {label: "int"}
 
+[partnerships]
+*id {label: "int, not null"}
+status {label: "enum"}
++a_id {label: "int, not null"}
++b_id {label: "int, not null"}
+
+[partnership_ratings]
+*id {label: "int, not null"}
+rating {label: "int, not null, min 0, max 10"}
++target_id {label: "int, not null"}
++partnership_id {label: "int, not null"}
+
 users 1--0 profiles
+
+users 1--0 skillsets {label: "wanted"}
+users 1--0 skillsets {label: "known"}
+
+skillranks +--1 skillsets
+
+users 1--* partnerships {label: "a"}
+users 1--* partnerships {label: "b"}
+
+users 1--* partnership_ratings {label: "target"}
+partnerships 1--0 partnership_ratings {label: "a"}
+partnerships 1--0 partnership_ratings {label: "b"}
+
+

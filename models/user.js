@@ -25,9 +25,17 @@ module.exports = (sequelize) =>
           userData.password = await userData.setPassword(userData.password);
           return userData;
         },
+        beforeBulkCreate: async (instances) => {
+          for (const instance of instances)
+            instance.password = await instance.setPassword(instance.password);
+        },
         beforeUpdate: async (userData) => {
           userData.password = await userData.setPassword(userData.password);
           return userData;
+        },
+        beforeBulkUpdate: async (instances) => {
+          for (const instance of instances)
+            instance.password = await instance.setPassword(instance.password);
         },
       },
       sequelize,

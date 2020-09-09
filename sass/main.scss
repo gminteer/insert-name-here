@@ -1,10 +1,31 @@
 @charset 'utf-8';
 @import '~bulma/sass/utilities/initial-variables';
 
+@import './color-scheme.scss';
 // change Bulma defaults here
 
 $tablet: 768px; // Bulma default tablet breakpoint is 1px larger than Chrome Dev Tools and I have no idea why
-
+$primary: map-get(
+  $map: $color-scheme,
+  $key: 'burnt-sienna',
+);
+$primary-invert: $black;
+$scheme-main: map-get(
+  $map: $color-scheme,
+  $key: 'platinum',
+);
+$scheme-main-bis: adjust-color(
+  $color: $scheme-main,
+  $lightness: -3%,
+);
+$scheme-main-ter: adjust-color(
+  $color: $scheme-main,
+  $lightness: -6%,
+);
+$link: map-get(
+  $map: $color-scheme,
+  $key: 'cadet',
+);
 @import '~bulma/bulma';
 
 // @import './path/to/style.scss' and/or add styles here.
