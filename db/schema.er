@@ -21,7 +21,8 @@ updated_at {label: "datetime"}
 +user_id {label: "int, not null"}
 
 [skillranks]
-*skill {label: "enum"}
+*id {label: "int, not null"}
+skill {label: "enum"}
 rank {label: "int, not null, min 0, max 10"}
 +skillset_id {label: "int, not null"}
 

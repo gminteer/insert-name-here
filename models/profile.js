@@ -8,8 +8,9 @@ module.exports = (sequelize) =>
       github: {type: DataTypes.STRING},
       linkedIn: {type: DataTypes.STRING},
       picture: {type: DataTypes.STRING, validate: {isUrl: true}},
-      profile: {type: DataTypes.STRING, validate: {isUrl: true}},
+      portfolio: {type: DataTypes.STRING, validate: {isUrl: true}},
       resume: {type: DataTypes.STRING, validate: {isUrl: true}},
+      website: {type: DataTypes.STRING, validate: {isUrl: true}},
     },
     {
       sequelize,

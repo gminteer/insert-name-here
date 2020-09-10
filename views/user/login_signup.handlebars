@@ -1,7 +1,7 @@
 <div class="columns is-mobile is-centered">
   <div class="column is-11">
-    <div class="card login my-5">
-      <div class="card-header">
+    <div class="card login mt-6">
+      <section class="card-header">
         {{#if login}}
         <p class="card-header-title is-centered">Don't have an account? <a class="ml-3" href="/user/signup">Sign up
             instead.</a></p>
@@ -9,8 +9,8 @@
         <p class="card-header-title is-centered">Already have an account? <a class="ml-3" href="/user/login">Log in
             instead.</a></p>
         {{/if}}
-      </div>
-      <div class="card-content">
+      </section>
+      <section class="card-content">
         <form id="login-signup" data-type={{#if login}}"login"{{else}}"signup"{{/if}}>
           <div class="field">
             <label class="label" for="username">Username</label>
@@ -42,7 +42,7 @@
           {{/unless}}
           <button class="button" type="submit">Log In</button>
         </form>
-      </div>
+      </section>
       <script src="/assets/js/user/login-signup.js" type="module"></script>
     </div>
   </div>

@@ -1,7 +1,13 @@
-# How this is layed out
+# How this is "organized"
 
 - api/
   - API route modules
+
+---
+
+- bin/
+  - seed-\*
+    - scripts to fill in the database with dummy data
 
 ---
 
@@ -13,7 +19,6 @@
 - db/
   - .sql files and scripts related to the database
     - schema.sql initializes the database
-    - seed.js will (eventually) be a script that populates the site with some dummy data
 
 ---
 

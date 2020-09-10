@@ -1,0 +1,36 @@
+<div class="columns is-mobile is-centered">
+  <div class="column is-11">
+    <div class="card">
+      <div class="card-content">
+        <form id="edit-profile" data-id="{{user.id}}">
+          <div class="field">
+            <label for="picture">Avatar URL</label>
+            <input class="input" type="text" id="picture" name="picture" value="{{profile.picture}}">
+          </div>
+          <div class="field">
+            <label for="portfolio">Portfolio URL</label>
+            <input class="input" type="text" id="portfolio" name="portfolio" value="{{profile.portfolio}}">
+          </div>
+          <div class="field">
+            <label for="website">Website URL</label>
+            <input class="input" type="text" id="website" name="website" value="{{profile.website}}">
+          </div>
+          <div class="field">
+            <label for="resume">Resume URL</label>
+            <input class="input" type="text" id="resume" name="resume" value="{{profile.resume}}">
+          </div>
+          <div class="field">
+            <label for="github">Github username</label>
+            <input class="input" type="text" id="github" name="github" value="{{profile.github}}">
+          </div>
+          <div class="field">
+            <label for="linkedin">LinkedIn username</label>
+            <input class="input" type="text" id="linkedin" name="linkedin" value="{{profile.linkedIn}}">
+          </div>
+          <input class="button" type="submit" id="submit" value="Update Profile">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/assets/js/user/edit-profile.js"></script>

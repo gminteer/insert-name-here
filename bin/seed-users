@@ -4,20 +4,28 @@ const faker = require('faker');
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(process.env.JAWSDB_URL);
-const User = require('../models/user')(sequelize);
+const {User, Profile} = require('../models')(sequelize);
 const COUNT = 16;
 
-const users = [];
-for (const i of Array(COUNT).keys()) {
-  const firstName = faker.name.firstName();
-  const lastName = faker.name.lastName();
-  users.push({
-    firstName,
-    lastName,
-    password: '1234',
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
-  });
-}
-
-(async () => await User.bulkCreate(users))();
+(async () => {
+  for (const _ of Array(COUNT).keys()) {
+    const firstName = faker.name.firstName();
+    const lastName = faker.name.lastName();
+    const {id: userId} = await User.create({
+      firstName,
+      lastName,
+      password: '1234',
+      username: faker.internet.userName(firstName, lastName),
+      email: faker.internet.email(firstName, lastName),
+    });
+    await Profile.create({
+      userId,
+      github: faker.internet.userName(firstName, lastName),
+      linkedIn: faker.internet.userName(firstName, lastName),
+      picture: faker.internet.avatar(),
+      portfolio: faker.internet.url(),
+      resume: faker.internet.url(),
+      website: faker.internet.url(),
+    });
+  }
+})();

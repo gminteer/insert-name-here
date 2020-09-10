@@ -1,0 +1,63 @@
+<div class="columns is-mobile is-centered">
+  <div class="column is-11">
+    <div class="card profile mt-6">
+      <section class="card-header py-3">
+        <div class="media mx-4 my-4">
+          <div class="media-left">
+            <figure class="image is-96x96">
+              {{#if profile.picture}}
+              <img src={{profile.picture}} alt="{{user.username}}'s profile image">
+              {{else}}
+              <img src="/assets/img/no-user-pic.jpg" alt="placeholder">
+              {{/if}}
+            </figure>
+          </div>
+          <div class="media-content">
+            <h2 class="title is-4 mb-0">{{#if (has_name user)}}{{full_name user}}
+              ({{user.username}}){{else}}{{user.username}}{{/if}}
+            </h2>
+            <p class="subtitle is-6 my-0">Member for {{relative_time user.createdAt}}</p>
+          </div>
+        </div>
+      </section>
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item tabs is-boxed">
+            <ul>
+              {{#if profile.github}}
+              <li>
+                <a href="https://github.com/{{profile.github}}">Github</a>
+              </li>
+              {{/if}}
+              {{#if profile.linkedIn}}
+              <li>
+                <a href="https://linkedin.com/{{profile.linkedIn}}">LinkedIn</a>
+              </li>
+              {{/if}}
+              {{#if profile.portfolio}}
+              <li>
+                <a href="{{profile.portfolio}}">Portfolio</a>
+              </li>
+              {{/if}}
+              {{#if profile.website}}
+              <li>
+                <a href="{{profile.website}}">Website</a>
+              </li>
+              {{/if}}
+              {{#if profile.resume}}
+              <li>
+                <a href="{{profile.resume}}">Resume</a>
+              </li>
+              {{/if}}
+            </ul>
+          </div>
+        </div>
+        {{#if (owns_resource session user)}}
+        <div class="level-right">
+          <a class="button" href="/user/profile/{{user.id}}/edit">Edit</a>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

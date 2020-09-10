@@ -1,0 +1,15 @@
+@import '../color-scheme/main.scss';
+
+.card.profile {
+  background-color: $primary-light;
+  .card-header {
+    background-color: $primary;
+  }
+  .media-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}

@@ -14,6 +14,9 @@ module.exports = {
   inflect(str, count) {
     return inflect(str, count);
   },
+  owns_resource(session, user) {
+    return session.user && session.user.id === user.id;
+  },
   relative_time(timeStamp) {
     const timeDelta = DateTime.fromJSDate(timeStamp)
       .diffNow(['years', 'months', 'weeks', 'days', 'hours', 'minutes'])

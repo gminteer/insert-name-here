@@ -11,10 +11,19 @@ module.exports = (services) => {
     req.session.destroy(() => res.redirect('/'));
   });
   router.get('/profile/:user_id', async (req, res) => {
-    const user = await services.user.get(req.params.user_id);
+    const {user_id: userId} = req.params;
+    const user = await services.user.get(userId);
     if (!user) return res.sendStatus(404);
-    return res.render('user/profile', user);
+    const profile = await services.profile.get(userId);
+    return res.render('user/view_profile', {user, profile});
   });
-
+  router.get('/profile/:user_id/edit', async (req, res) => {
+    const {user_id: userId} = req.params;
+    if (req.session.user.id !== Number(userId)) return res.redirect('./');
+    const user = await services.user.get(userId);
+    if (!user) return res.sendStatus(404);
+    const profile = await services.profile.get(userId);
+    return res.render('user/edit_profile', {user, profile});
+  });
   return router;
 };

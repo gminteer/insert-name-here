@@ -1,4 +1,4 @@
-const USER_COLUMNS = ['username', 'password', 'email', 'firstName', 'lastName', 'profilePicture'];
+const MANDATORY_COLUMNS = ['username', 'password', 'email', 'firstName', 'lastName'];
 
 module.exports = (_, {User}) => ({
   async get(id) {

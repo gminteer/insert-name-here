@@ -1,8 +1,9 @@
-const form = document.querySelector('#login-signup');
-const isLogin = form.dataset.type === 'login';
+const $form = document.querySelector('#login-signup');
+const isLogin = $form.dataset.type === 'login';
 
-form.addEventListener('submit', async (event) => {
+$form.addEventListener('submit', async (event) => {
   event.preventDefault();
+
   const username = document.querySelector('#username').value.trim();
   const password = document.querySelector('#password').value;
   const $email = document.querySelector('#email');
@@ -12,7 +13,6 @@ form.addEventListener('submit', async (event) => {
     return;
   }
   const endpoint = isLogin ? '/api/v1/user/login' : '/api/v1/user';
-  console.log(endpoint);
   const body = email ? {username, password, email} : {username, password};
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -22,7 +22,7 @@ form.addEventListener('submit', async (event) => {
   const data = await response.json();
   if (!response.ok) {
     // TODO: better error handling
-    console.error(data.message);
+    data.forEach((err) => console.error(err.message));
     return;
   }
   console.info(data.message);
