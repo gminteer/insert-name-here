@@ -54,5 +54,3 @@ users 1--* partnerships {label: "b"}
 users 1--* partnership_ratings {label: "target"}
 partnerships 1--0 partnership_ratings {label: "a"}
 partnerships 1--0 partnership_ratings {label: "b"}
-
-
