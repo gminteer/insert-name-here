@@ -30,3 +30,4 @@ Things to consider:
 - fancy matching algorithm
   - maybe prioritize matching to spread rarer skills?
 - users can opt-in/opt-out of one-sided exchanges (where they're strictly a teacher or a student in the partnership) for score bonuses
+  - this should probably be part of the MVP, just a "allowOneSided" flag on their profile?

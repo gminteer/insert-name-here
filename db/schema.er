@@ -9,6 +9,11 @@ last_name {label: "varchar"}
 created_at {label: "datetime"}
 updated_at {label: "datetime"}
 
+[blacklists]
+*id {label: "int, not null"}
++blocker {label: "int, not null"}
++blocked_usser {label: "int, not null"}
+
 [profiles]
 *id {label: "int, not null"}
 github {label: "varchar, isUrl"}
@@ -36,6 +41,13 @@ status {label: "enum"}
 +a_id {label: "int, not null"}
 +b_id {label: "int, not null"}
 
+[messages]
+*id {label: "int, not null"}
+title {label: "varchar"}
+body {label: "text, not null"}
++partnership_id {label: "int, not null"}
++author_id {label: "int, not null"}
+
 [partnership_ratings]
 *id {label: "int, not null"}
 rating {label: "int, not null, min 0, max 10"}
@@ -51,9 +63,12 @@ skillranks +--1 skillsets
 
 users 1--* partnerships {label: "a"}
 users 1--* partnerships {label: "b"}
+messages 0--* partnerships
+messages *--1 users {label: "author"}
 
 users 1--* partnership_ratings {label: "target"}
 partnerships 1--0 partnership_ratings {label: "a"}
 partnerships 1--0 partnership_ratings {label: "b"}
 
-
+users 1--* blacklists {label: "blocker"}
+users 1--* blacklists {label: "blocked_user"}

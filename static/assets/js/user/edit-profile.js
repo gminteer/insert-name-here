@@ -9,7 +9,6 @@ $form.addEventListener('submit', async (event) => {
   const resume = document.querySelector('#resume').value.trim();
   const github = document.querySelector('#github').value.trim();
   const linkedIn = document.querySelector('#linkedin').value.trim();
-  debugger;
 
   const response = await fetch(`/api/v1/user/profile/${$form.dataset.id}`, {
     method: 'PUT',
