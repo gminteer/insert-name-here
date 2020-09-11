@@ -9,11 +9,6 @@ last_name {label: "varchar"}
 created_at {label: "datetime"}
 updated_at {label: "datetime"}
 
-[blacklists]
-*id {label: "int, not null"}
-+blocker {label: "int, not null"}
-+blocked_usser {label: "int, not null"}
-
 [profiles]
 *id {label: "int, not null"}
 github {label: "varchar, isUrl"}
