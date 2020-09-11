@@ -1,10 +1,27 @@
 const {Op} = require('sequelize');
 
-module.exports = (_, {Partnership}) => ({
+module.exports = (_, {User, Partnership}) => ({
   async get(id) {
     const partnership = await Partnership.findOne({where: {id}});
     if (!partnership) return;
     return partnership.get({plain: true});
+  },
+
+  async create(primaryId, {secondaryId}) {
+    if (primaryId === secondaryId) return {error: 'INVALID_PARTNERSHIP'};
+    const secondaryUser = await User.findOne({where: {id: secondaryId}});
+    if (!secondaryUser) return {error: 'INVALID_SECONDARY_USER'};
+    const duplicate = await Partnership.findOne({
+      where: {
+        [Op.or]: [
+          {primaryId, secondaryId},
+          {primaryId: secondaryId, secondaryId: primaryId},
+        ],
+      },
+    });
+    if (duplicate) return {error: 'ALREADY_EXISTS'};
+    const partnership = await Partnership.create({primaryId, secondaryId, status: 'MATCHED'});
+    return partnership;
   },
 
   async getUserPartnerships(userId) {

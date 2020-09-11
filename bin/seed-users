@@ -4,10 +4,11 @@ const faker = require('faker');
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(process.env.JAWSDB_URL);
-const {User, Profile} = require('../models')(sequelize);
+const {User, Profile, Partnership} = require('../models')(sequelize);
 const COUNT = 16;
 
 (async () => {
+  await sequelize.sync({force: true});
   for (const _ of Array(COUNT).keys()) {
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
@@ -27,5 +28,10 @@ const COUNT = 16;
       resume: faker.internet.url(),
       website: faker.internet.url(),
     });
+  }
+
+  for (let i = 2; i < 16; i++) {
+    if (i % 2) await Partnership.create({status: 'ACTIVE', primaryId: 1, secondaryId: i});
+    else await Partnership.create({status: 'ACTIVE', primaryId: i, secondaryId: 1});
   }
 })();
