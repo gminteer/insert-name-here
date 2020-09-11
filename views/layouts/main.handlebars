@@ -30,6 +30,7 @@
       </div>
       <div class="navbar-end">
         {{#if session.isLoggedIn}}
+        <a class="navbar-item subtitle is-3" href="/user/messages">Messages</a>
         <a class="navbar-item subtitle is-3" href="/user/logout">Log Out</a>
         {{else}}
         <a class="navbar-item subtitle is-3 mb-0" href="/user/login">Log in</a>
