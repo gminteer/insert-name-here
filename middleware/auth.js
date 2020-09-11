@@ -23,4 +23,14 @@ module.exports = (services) => ({
       return res.status(403).json({message: 'Not resource owner'});
     next();
   },
+  async mustBeInPartnership(req, res, next) {
+    if (!req.session.isLoggedIn) return res.status(403).json({message: 'Not logged in'});
+    const userId = req.session.user.id;
+    const {user_id: targetId} = req.params;
+    const partnerIds = await services.partnership.getPartnerIds(userId);
+    partnerIds.push(userId);
+    if (!partnerIds.includes(Number(targetId)))
+      return res.status(403).json({message: 'Not in partnership'});
+    next();
+  },
 });

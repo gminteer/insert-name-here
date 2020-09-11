@@ -21,7 +21,9 @@
         </div>
       </section>
       <div class="level">
+        {{#if (owns_resource session user)}}
         <div class="level-left">
+          {{/if}} {{! autoformatter is getting the indent level wrong here}}
           <div class="level-item tabs is-boxed">
             <ul>
               {{#if profile.github}}
@@ -51,10 +53,10 @@
               {{/if}}
             </ul>
           </div>
+          {{#if (owns_resource session user)}} {{! autoformatter is getting the indent level wrong here}}
         </div>
-        {{#if (owns_resource session user)}}
         <div class="level-right">
-          <a class="button" href="/user/profile/{{user.id}}/edit">Edit</a>
+          <a class="button" href="/user/profile/edit">Edit</a>
         </div>
         {{/if}}
       </div>

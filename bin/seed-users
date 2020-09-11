@@ -30,8 +30,13 @@ const COUNT = 16;
     });
   }
 
-  for (let i = 2; i < 16; i++) {
-    if (i % 2) await Partnership.create({status: 'ACTIVE', primaryId: 1, secondaryId: i});
-    else await Partnership.create({status: 'ACTIVE', primaryId: i, secondaryId: 1});
+  for (let i = 2; i < 17; i++) {
+    let status;
+    if (i % 4 === 0) status = 'MATCHED';
+    if (i % 4 === 1) status = 'ACTIVE';
+    if (i % 4 === 2) status = 'BLOCKED';
+    if (i % 4 === 3) status = 'CLOSED';
+    if (i % 2) await Partnership.create({status, primaryId: 1, secondaryId: i});
+    else await Partnership.create({status, primaryId: i, secondaryId: 1});
   }
 })();

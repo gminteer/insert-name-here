@@ -32,9 +32,11 @@ rank {label: "int, not null, min 0, max 10"}
 
 [partnerships]
 *id {label: "int, not null"}
+primary_approved {label: "boolean"}
+secondary_approved {label: "boolean"}
 status {label: "enum"}
-+a_id {label: "int, not null"}
-+b_id {label: "int, not null"}
++primary_id {label: "int, not null"}
++seconary_id {label: "int, not null"}
 
 [messages]
 *id {label: "int, not null"}
@@ -56,8 +58,8 @@ users 1--0 skillsets {label: "known"}
 
 skillranks +--1 skillsets
 
-users 1--* partnerships {label: "a"}
-users 1--* partnerships {label: "b"}
+users 1--* partnerships {label: "primary"}
+users 1--* partnerships {label: "secondary"}
 messages 0--* partnerships
 messages *--1 users {label: "author"}
 

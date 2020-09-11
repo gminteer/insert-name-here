@@ -1,27 +1,30 @@
 const router = require('express').Router();
 
 module.exports = ({user: userSvc}, {auth}, handleErr) => {
-  // get all users
-  router.get('/', async (req, res) => {
-    try {
-      const users = await userSvc.get();
-      if (users.length < 1) return res.status(404).json({message: 'No users in database'});
-      return res.json(users);
-    } catch (err) {
-      handleErr(req, res, err);
-    }
-  });
-  // get a specific user by ID
-  router.get('/:user_id', async (req, res) => {
-    try {
-      const id = req.params.user_id;
-      const user = await userSvc.get(id);
-      if (!user) return res.status(404).json({message: `No user found with id: "${id}"`});
-      return res.json(user);
-    } catch (err) {
-      handleErr(req, res, err);
-    }
-  });
+  // disable in production, debug only routes
+  if (process.env.NODE_ENV !== 'production') {
+    // get all users
+    router.get('/', async (req, res) => {
+      try {
+        const users = await userSvc.get();
+        if (users.length < 1) return res.status(404).json({message: 'No users in database'});
+        return res.json(users);
+      } catch (err) {
+        handleErr(req, res, err);
+      }
+    });
+    // get a specific user by ID
+    router.get('/:user_id', auth.mustBeInPartnership, async (req, res) => {
+      try {
+        const id = req.params.user_id;
+        const user = await userSvc.get(id);
+        if (!user) return res.status(404).json({message: `No user found with id: "${id}"`});
+        return res.json(user);
+      } catch (err) {
+        handleErr(req, res, err);
+      }
+    });
+  }
   // create a user
   router.post('/', auth.mustNotBeLoggedIn, async (req, res) => {
     try {
