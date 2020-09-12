@@ -36,16 +36,16 @@
       "util/**"
     ]
   },
-  "repository": "github:insert-username-here/insert-name-here",
+  "repository": "github:gminteer/insert-name-here",
   "author": "",
   "contributors": [
     "Greg Minteer <gminteer@gmail.com> (https://gminteer.github.io)"
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/insert-username-here/insert-name-here/issues"
+    "url": "https://github.com/gminteer/insert-name-here/issues"
   },
-  "homepage": "https://github.com/insert-username-here/insert-name-here#readme",
+  "homepage": "https://github.com/gminteer/insert-name-here#readme",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "autoprefixer": "^9.8.6",

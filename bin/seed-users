@@ -31,11 +31,18 @@ const COUNT = 16;
   }
 
   for (let i = 2; i < 17; i++) {
-    let status;
-    if (i % 4 === 0) status = 'MATCHED';
-    if (i % 4 === 1) status = 'ACTIVE';
-    if (i % 4 === 2) status = 'BLOCKED';
-    if (i % 4 === 3) status = 'CLOSED';
+    const status = ((i) => {
+      switch (i % 4) {
+        case 0:
+          return 'MATCHED';
+        case 1:
+          return 'ACTIVE';
+        case 2:
+          return 'BLOCKED';
+        case 3:
+          return 'CLOSED';
+      }
+    })(i);
     if (i % 2) await Partnership.create({status, primaryId: 1, secondaryId: i});
     else await Partnership.create({status, primaryId: i, secondaryId: 1});
   }
