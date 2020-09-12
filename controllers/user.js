@@ -25,5 +25,11 @@ module.exports = (services) => {
     const profile = await services.profile.get(userId);
     return res.render('user/edit_profile', {user, profile});
   });
+  router.get('/profile/:user_id/messages', async (req, res) => {
+    const {user_id: userId} = req.params;
+    if (req.session.user.id !== Number(userId)) return res.redirect('./');
+    return res.render('user/message_screen', {user, profile});
+  });
   return router;
+  
 };
