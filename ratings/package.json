@@ -1,0 +1,26 @@
+{
+  "name": "ratings",
+  "version": "1.0.0",
+  "description": "Enter-Name-Here",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/cinful79/insert-name-here.git"
+  },
+  "keywords": [
+    "Ratings",
+    "Services"
+  ],
+  "author": "Cindy Bonilla",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cinful79/insert-name-here/issues"
+  },
+  "homepage": "https://github.com/cinful79/insert-name-here#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
+}
