@@ -1,16 +1,14 @@
 const {inflect} = require('inflection');
 const {DateTime} = require('luxon');
 
-module.exports = (services) => ({
-  async full_name({id}) {
-    const {firstName, lastName} = await services.profile.get(id);
+module.exports = () => ({
+  full_name({firstName, lastName}) {
     return [firstName, lastName]
       .filter((name) => name)
       .reduce((acc, name) => (acc += `${name} `), '')
       .trim();
   },
-  async has_name({id}) {
-    const {firstName, lastName} = await services.profile.get(id);
+  has_name({firstName, lastName}) {
     return firstName || lastName;
   },
   inflect(str, count) {
