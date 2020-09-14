@@ -15,10 +15,10 @@ module.exports = (sequelize) => {
   Rating.belongsTo(Partnership);
   Partnership.hasMany(Rating);
 
-  Rating.belongsTo(User, {foreignKey: 'ownerId', as: 'owner'});
-  User.hasMany(Rating, {foreignKey: 'ownerId'});
-  Rating.belongsTo(User, {foreignKey: 'targetId', as: 'target'});
-  User.hasMany(Rating, {foreignKey: 'targetId'});
+  Rating.belongsTo(User, {foreignKey: 'ownerId'});
+  User.hasMany(Rating, {foreignKey: 'ownerId', as: 'owner'});
+  Rating.belongsTo(User, {foreignKey: 'targetId'});
+  User.hasMany(Rating, {foreignKey: 'targetId', as: 'target'});
 
   return {User, Profile, Partnership, Rating};
 };
