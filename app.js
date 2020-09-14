@@ -5,11 +5,11 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const hbs = exphbs.create({helpers: require('./helpers')});
 
 module.exports = (sequelize) => {
   const models = require('./models')(sequelize);
   const services = require('./services')(sequelize, models);
+  const hbs = exphbs.create({helpers: require('./helpers')(services)});
   const middleware = require('./middleware')(services);
   const routes = require('./routes')(services, middleware);
 

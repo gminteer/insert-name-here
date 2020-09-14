@@ -13,14 +13,14 @@ const COUNT = 16;
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
     const {id: userId} = await User.create({
-      firstName,
-      lastName,
       password: '1234',
       username: faker.internet.userName(firstName, lastName),
       email: faker.internet.email(firstName, lastName),
     });
     await Profile.create({
       userId,
+      firstName,
+      lastName,
       github: faker.internet.userName(firstName, lastName),
       linkedIn: faker.internet.userName(firstName, lastName),
       picture: faker.internet.avatar(),

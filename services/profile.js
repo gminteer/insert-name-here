@@ -1,4 +1,13 @@
-const PROFILE_COLUMNS = ['github', 'linkedIn', 'picture', 'portfolio', 'resume', 'website'];
+const PROFILE_COLUMNS = [
+  'github',
+  'linkedIn',
+  'picture',
+  'portfolio',
+  'resume',
+  'website',
+  'firstName',
+  'lastName',
+];
 
 module.exports = (_, {User, Profile}) => ({
   async get(userId) {
