@@ -33,8 +33,8 @@ module.exports = (services, {auth}) => {
         async (partnerId) => await services.profile.get(partnerId)
       )
     );
-    //return res.render('user/view_matches', {partners});
-    return res.json(partners);
+    return res.render('user/view_partners', {partners});
+    // return res.json(partners);
   });
   router.get('/', (req, res) => {
     // TODO: figure out how to do this with a relative redirect in a way that handles "/user" and "/user/" the same way

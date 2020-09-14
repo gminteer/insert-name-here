@@ -14,7 +14,7 @@ module.exports = (_, {User, Profile}) => ({
     if (!userId) return;
     const profile = await Profile.findOne({
       where: {userId},
-      include: {model: User, attributes: ['username']},
+      include: {model: User, attributes: ['username', 'createdAt']},
     });
     if (!profile) return;
     return profile.get({plain: true});
