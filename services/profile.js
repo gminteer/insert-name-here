@@ -1,9 +1,21 @@
-const PROFILE_COLUMNS = ['github', 'linkedIn', 'picture', 'portfolio', 'resume', 'website'];
+const PROFILE_COLUMNS = [
+  'github',
+  'linkedIn',
+  'picture',
+  'portfolio',
+  'resume',
+  'website',
+  'firstName',
+  'lastName',
+];
 
-module.exports = (_, {Profile}) => ({
+module.exports = (_, {User, Profile}) => ({
   async get(userId) {
     if (!userId) return;
-    const profile = await Profile.findOne({where: {userId}});
+    const profile = await Profile.findOne({
+      where: {userId},
+      include: {model: User, attributes: ['username', 'createdAt']},
+    });
     if (!profile) return;
     return profile.get({plain: true});
   },

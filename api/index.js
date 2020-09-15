@@ -20,5 +20,6 @@ function handleErr(req, res, err) {
 
 module.exports = (services, middleware) => {
   router.use('/user', require('./user')(services, middleware, handleErr));
+  router.use('/partnership', require('./partnership')(services, middleware, handleErr));
   return router;
 };

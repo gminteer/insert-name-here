@@ -3,4 +3,8 @@ module.exports = () => ({
     res.locals.session = req.session;
     next();
   },
+  appName(req, res, next) {
+    res.locals.appName = process.env.APP_NAME;
+    next();
+  },
 });

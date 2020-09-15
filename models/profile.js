@@ -11,6 +11,8 @@ module.exports = (sequelize) =>
       portfolio: {type: DataTypes.STRING, validate: {isUrl: true}},
       resume: {type: DataTypes.STRING, validate: {isUrl: true}},
       website: {type: DataTypes.STRING, validate: {isUrl: true}},
+      firstName: DataTypes.STRING,
+      lastName: DataTypes.STRING,
     },
     {
       sequelize,
