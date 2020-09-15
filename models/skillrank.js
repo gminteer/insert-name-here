@@ -1,11 +1,10 @@
 const {Model, DataTypes} = require('sequelize');
 
-class skillRanks extends Model {}
+class SkillRank extends Model {}
 
-module.exports = (sequelize) => {
-  skillRanks.init(
+module.exports = (sequelize) =>
+  SkillRank.init(
     {
-      // skill: {},
       rank: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -14,14 +13,10 @@ module.exports = (sequelize) => {
           max: 10,
         },
       },
-      skillsetId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
     },
     {
       sequelize,
-      modelName: 'skillranks',
+      underscored: true,
+      modelName: 'skillrank',
     }
   );
-};

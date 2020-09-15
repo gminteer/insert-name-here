@@ -13,6 +13,22 @@ module.exports = (services, {auth}) => {
   router.get('/logout', (req, res) => {
     req.session.destroy(() => res.redirect('/'));
   });
+  // dashboard for logged in user
+  router.get('/dashboard', auth.mustBeLoggedIn, async (req, res) => {
+    const profile = await services.profile.get(req.session.user.id);
+    const knownSkills = await services.skillset.get(req.session.user.id, 'KNOWN');
+    const wantedSkills = await services.skillset.get(req.session.user.id, 'WANTED');
+    const partners = await Promise.all(
+      (await services.partnership.getPartnerIds(req.session.user.id)).map(
+        async (partnerId) => await services.profile.get(partnerId)
+      )
+    );
+    return res.render('user/dashboard', {profile, partners, knownSkills, wantedSkills});
+  });
+  router.get('/skills/known', auth.mustBeLoggedIn, async (req, res) => {
+    const knownSkills = await services.skillset.get(req.session.user.id, 'KNOWN');
+    return res.json(knownSkills);
+  });
   // change the currently logged in user's profile
   router.get('/profile/edit', auth.mustBeLoggedIn, async (req, res) => {
     const profile = await services.profile.get(req.session.user.id);
@@ -24,30 +40,17 @@ module.exports = (services, {auth}) => {
     const user = await services.user.get(userId);
     if (!user) return res.sendStatus(404);
     const profile = await services.profile.get(userId);
-    return res.render('user/view_profile', {user, profile});
+    return res.render('user/view_profile', {profile});
   });
-  // get partnerships
-  router.get('/partners', auth.mustBeLoggedIn, async (req, res) => {
-    const partners = await Promise.all(
-      (await services.partnership.getPartnerIds(req.session.user.id)).map(
-        async (partnerId) => await services.profile.get(partnerId)
-      )
-    );
-    return res.render('user/view_partners', {partners});
-    // return res.json(partners);
+  // view messages
+  router.get('/messages', auth.mustBeLoggedIn, async (req, res) => {
+    const messages = await services.messages.get(req.session.user.id);
+    return res.render('user/message_screen', {messages});
   });
   router.get('/', (req, res) => {
     // TODO: figure out how to do this with a relative redirect in a way that handles "/user" and "/user/" the same way
-    if (req.session.user) return res.redirect(`/user/profile/${req.session.user.id}`);
+    if (req.session.user) return res.redirect(`/user/dashboard`);
     else return res.redirect('login');
-  });
-  router.get('/profile/:user_id/messages', async (req, res) => {
-    const {user_id: userId} = req.params;
-    if (req.session.user.id !== Number(userId)) return res.redirect('./');
-    const user = await services.user.get(userId);
-    if (!user) return res.sendStatus(404);
-    const messages = await services.get;
-    return res.render('user/message_screen', {user, messages});
   });
   return router;
 };

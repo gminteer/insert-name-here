@@ -14,7 +14,7 @@
     "watch": "webpack --watch"
   },
   "bin": {
-    "seed-users": "bin/seed-users"
+    "seed": "bin/seed"
   },
   "jest": {
     "collectCoverage": true,

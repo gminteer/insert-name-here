@@ -56,7 +56,7 @@ module.exports = {
       // extends: ['plugin:compat/recommended'],
     },
     {
-      files: ['./postcss.config.js', 'bin/seed-*'],
+      files: ['./postcss.config.js', 'bin/seed*'],
       rules: {
         'node/no-unpublished-require': ['error', {allowModules: devDependencies}],
       },
