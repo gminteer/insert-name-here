@@ -25,5 +25,5 @@ module.exports = (sequelize) => {
   User.hasMany(Rating, {foreignKey: 'targetId', as: 'target'});
 
   // return {User, Profile, Partnership, Rating};
-  return {User, Profile, PartnershipRatings, Parternships, Skillranks, Skillsets};
+  return {User, Profile, Rating, Partnership, Skillranks, Skillsets};
 };
