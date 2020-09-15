@@ -8,6 +8,16 @@ module.exports = (sequelize) => {
 
   User.hasOne(Profile);
   Profile.belongsTo(User);
+  User.hasMany(Parternships);
+  Parternships.belongsTo(User);
+  User.hasMany(PartnershipRatings);
+  PartnershipRatings.belongsTo(User);
+  PartnershipRatings.belongsTo(Parternships);
+  Parternships.hasMany(PartnershipRatings);
+  User.hasMany(Skillsets);
+  Skillsets.belongsTo(User);
+  Skillsets.hasMany(Skillranks);
+  Skillranks.belongsTo(Skillsets);
 
   return {User, Profile, PartnershipRatings, Parternships, Skillranks, Skillsets};
 };

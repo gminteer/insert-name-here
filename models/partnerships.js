@@ -8,7 +8,9 @@ module.exports = (sequelize) => {
       type: DataType.INTEGER,
       allowNull: false,
     },
-    status: {},
+    status: {
+        
+    },
     sequelize,
     modelName: 'partnerships',
   });
