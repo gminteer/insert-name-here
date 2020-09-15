@@ -28,7 +28,10 @@ module.exports = (services) => {
   router.get('/profile/:user_id/messages', async (req, res) => {
     const {user_id: userId} = req.params;
     if (req.session.user.id !== Number(userId)) return res.redirect('./');
-    return res.render('user/message_screen', {user, profile});
+    const user = await services.user.get(userId);
+    if (!user) return res.sendStatus(404);
+    const messages = await services.get
+    return res.render('user/message_screen', {user, messages});
   });
   return router;
   
