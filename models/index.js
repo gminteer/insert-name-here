@@ -3,6 +3,10 @@ module.exports = (sequelize) => {
   const Profile = require('./profile')(sequelize);
   const Partnership = require('./partnership')(sequelize);
   const Rating = require('./rating')(sequelize);
+  // const PartnershipRatings = require('./partnershipratings')(sequelize);
+  // const Parternships = require('./partnerships')(sequelize);
+  const Skillranks = require('./skillranks')(sequelize);
+  const Skillsets = require('./skillsets')(sequelize);
 
   User.hasOne(Profile);
   Profile.belongsTo(User);
@@ -20,5 +24,6 @@ module.exports = (sequelize) => {
   Rating.belongsTo(User, {foreignKey: 'targetId'});
   User.hasMany(Rating, {foreignKey: 'targetId', as: 'target'});
 
-  return {User, Profile, Partnership, Rating};
+  // return {User, Profile, Partnership, Rating};
+  return {User, Profile, PartnershipRatings, Parternships, Skillranks, Skillsets};
 };
