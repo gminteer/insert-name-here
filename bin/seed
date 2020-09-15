@@ -1,0 +1,86 @@
+#!/usr/bin/env node
+require('dotenv').config();
+const faker = require('faker');
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize(process.env.JAWSDB_URL);
+const {User, Profile, Partnership, Skill, SkillRank, SkillSet} = require('../models')(sequelize);
+
+const COUNT = 16;
+const SKILLS = [
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'Python',
+  'Node.js',
+  'Perl',
+  'Ruby',
+  'PHP',
+  'WordPress',
+  'React',
+  'Vue',
+  'Angular',
+  'Apache',
+  'C',
+  'C++',
+  'C#',
+  'Rust',
+  '.NET',
+  'SQL',
+  'LINQ',
+];
+
+(async () => {
+  await sequelize.sync({force: true});
+
+  // seed skills table
+  SKILLS.forEach(async (skill) => await Skill.create({name: skill}));
+
+  for (const _ of Array(COUNT).keys()) {
+    // create user
+    const firstName = faker.name.firstName();
+    const lastName = faker.name.lastName();
+    const user = await User.create({
+      password: 'password',
+      username: faker.internet.userName(firstName, lastName),
+      email: faker.internet.email(firstName, lastName),
+    });
+    // create profile
+    await Profile.create({
+      userId: user.id,
+      firstName,
+      lastName,
+      github: faker.internet.userName(firstName, lastName),
+      linkedIn: faker.internet.userName(firstName, lastName),
+      picture: faker.internet.avatar(),
+      portfolio: faker.internet.url(),
+      resume: faker.internet.url(),
+      website: faker.internet.url(),
+      // this doesn't work
+      // createdAt: faker.date.past(),
+      // updatedAt: faker.date.recent(),
+    });
+    // create skill sets
+    const knownSkills = await SkillSet.create();
+    const wantedSkills = await SkillSet.create();
+    user.knownSkillsetId = knownSkills.id;
+    user.wantedSkillsetId = wantedSkills.id;
+    for (let i = 0; i < SKILLS.length; i++) {
+      const skill = await Skill.findOne({where: {name: SKILLS[i]}});
+      await SkillRank.create({
+        skillsetId: Math.random() > 0.5 ? knownSkills.id : wantedSkills.id,
+        skillId: skill.id,
+        rank: Math.floor(Math.random() * 11),
+      });
+    }
+    await user.save();
+  }
+  // create some partnerships
+  for (let i = 2; i < 17; i++) {
+    const status = ['MATCHED', 'ACTIVE', 'BLOCKED', 'CLOSED'][i % 4];
+    if (i % 2) await Partnership.create({status, primaryId: 1, secondaryId: i});
+    else await Partnership.create({status, primaryId: i, secondaryId: 1});
+  }
+
+  await sequelize.close();
+})();

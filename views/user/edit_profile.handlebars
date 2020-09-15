@@ -4,6 +4,14 @@
       <div class="card-content">
         <form id="edit-profile" data-id="{{user.id}}">
           <div class="field">
+            <label for="first-name">First name</label>
+            <input class="input" type="text" id="first-name" name="first-name" value="{{profile.firstName}}">
+          </div>
+          <div class="field">
+            <label for="last-name">Last name</label>
+            <input class="input" type="text" id="last-name" name="last-name" value="{{profile.lastName}}">
+          </div>
+          <div class="field">
             <label for="picture">Avatar URL</label>
             <input class="input" type="text" id="picture" name="picture" value="{{profile.picture}}">
           </div>

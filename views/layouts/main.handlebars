@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/assets/css/style.css">
-  <title>New Page 1.html</title>
+  <title>{{appName}}.html</title>
 </head>
 
 <body>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item title is-1 mb-0" href="/">
-        <h1>&#x7B;&#x7B;insert-name-here&#x7D;&#x7D;</h1>
+        <h1>&#x7B;&#x7B;{{appName}}&#x7D;&#x7D;</h1>
       </a>
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
         <span aria-hidden="true"></span>
@@ -23,14 +23,13 @@
 
     <div id="navbar-menu" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item subtitle is-3 mb-0">Dashboard</a>
         {{#if session.isLoggedIn}}
-        <a class="navbar-item subtitle is-3" href="/user/profile/{{session.user.id}}">Profile</a>
+        <a class="navbar-item subtitle is-3 mb-0" href="/user/dashboard">Dashboard</a>
+        <a class="navbar-item subtitle is-3 mb-0" href="/user/messages">Messages</a>
         {{/if}}
       </div>
       <div class="navbar-end">
         {{#if session.isLoggedIn}}
-        <a class="navbar-item subtitle is-3" href="/user/messages">Messages</a>
         <a class="navbar-item subtitle is-3" href="/user/logout">Log Out</a>
         {{else}}
         <a class="navbar-item subtitle is-3 mb-0" href="/user/login">Log in</a>

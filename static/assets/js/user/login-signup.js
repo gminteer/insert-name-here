@@ -22,7 +22,8 @@ $form.addEventListener('submit', async (event) => {
   const data = await response.json();
   if (!response.ok) {
     // TODO: better error handling
-    data.forEach((err) => console.error(err.message));
+    if (Array.isArray(data)) data.forEach((err) => console.error(err.message));
+    else console.error(data.message);
     return;
   }
   console.info(data.message);

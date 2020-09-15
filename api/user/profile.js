@@ -1,7 +1,8 @@
 const router = require('express').Router();
 
 module.exports = ({profile: profileSvc}, {auth}, handleErr) => {
-  router.get('/:user_id', async (req, res) => {
+  // get a profile by user ID
+  router.get('/:user_id', auth.mustBeInPartnership, async (req, res) => {
     try {
       const {user_id: userId} = req.params;
       const profile = await profileSvc.get(userId);
@@ -12,7 +13,7 @@ module.exports = ({profile: profileSvc}, {auth}, handleErr) => {
       handleErr(req, res, err);
     }
   });
-
+  // change a profile by user ID
   router.put('/:user_id', auth.mustOwnEndpoint, async (req, res) => {
     try {
       const {user_id: userId} = req.params;
@@ -22,7 +23,7 @@ module.exports = ({profile: profileSvc}, {auth}, handleErr) => {
       handleErr(req, res, err);
     }
   });
-
+  // delete a profile by user ID
   router.delete('/:user_id', auth.mustOwnEndpoint, async (req, res) => {
     try {
       const {user_id: userId} = req.params;
