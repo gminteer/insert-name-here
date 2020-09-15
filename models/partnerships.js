@@ -1,11 +1,11 @@
-const {Model, DataTypes} = require('sequelize');
+const {Model, DataType} = require('sequelize');
 
 class Partnerships extends Model {}
 
 module.exports = (sequelize) => {
   Partnerships.init({
     id: {
-      type: DataTypes.INTEGER,
+      type: DataType.INTEGER,
       allowNull: false,
     },
     status: {},
