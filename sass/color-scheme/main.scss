@@ -8,11 +8,11 @@
 }
 
 $color-scheme: (
-  'burnt-sienna': #dd6e42,
-  'dutch-white': #e8dab2,
-  'cadet': #4f6d7a,
+  'cerulean-frost': #6096ba,
+  'battleship-grey': #8b8c89,
+  'yale-blue': #274c77,
   'columbia-blue': #c0d6df,
-  'platinum': #eaeaea,
+  'alice-blue': #e7ecef,
 );
 
 @each $name, $color in $color-scheme {
@@ -20,15 +20,16 @@ $color-scheme: (
 }
 
 // these directly change Bulma defaults
-$primary: map-get(
+$primary:map-get(
   $map: $color-scheme,
-  $key: 'burnt-sienna',
+  $key: 'cerulean-frost',
 );
+
 $primary-invert: $white;
 
 $scheme-main: map-get(
   $map: $color-scheme,
-  $key: 'platinum',
+  $key: 'alice-blue',
 );
 $scheme-main-bis: adjust-color(
   $color: $scheme-main,
@@ -42,11 +43,11 @@ $scheme-main-ter: adjust-color(
 // these do not
 $primary-light: map-get(
   $map: $color-scheme,
-  $key: 'dutch-white',
+  $key: 'battleship-grey',
 );
 $secondary: map-get(
   $map: $color-scheme,
-  $key: 'cadet',
+  $key: 'yale-blue',
 );
 $secondary-light: map-get(
   $map: $color-scheme,
