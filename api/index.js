@@ -21,5 +21,6 @@ function handleErr(req, res, err) {
 module.exports = (services, middleware) => {
   router.use('/user', require('./user')(services, middleware, handleErr));
   router.use('/partnership', require('./partnership')(services, middleware, handleErr));
+  router.use(middleware.errHandlers.api.jsonify);
   return router;
 };

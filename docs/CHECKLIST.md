@@ -2,7 +2,7 @@
 
 - user accounts ✔
 - user profiles 1/2 ✔
-- skill sets ❌
+- skill sets 1/2 ✔
 - matching ❌
 - direct messages ❌
 - ratings ❌

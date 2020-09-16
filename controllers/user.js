@@ -25,10 +25,6 @@ module.exports = (services, {auth}) => {
     );
     return res.render('user/dashboard', {profile, partners, knownSkills, wantedSkills});
   });
-  router.get('/skills/known', auth.mustBeLoggedIn, async (req, res) => {
-    const knownSkills = await services.skillset.get(req.session.user.id, 'KNOWN');
-    return res.json(knownSkills);
-  });
   // change the currently logged in user's profile
   router.get('/profile/edit', auth.mustBeLoggedIn, async (req, res) => {
     const profile = await services.profile.get(req.session.user.id);
