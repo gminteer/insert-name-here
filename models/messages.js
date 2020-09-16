@@ -1,10 +1,12 @@
-const { Model, Datatypes } = require('sequelize');
+const {Model, DataTypes} = require('sequelize');
 
 class Messages extends Model {}
 
-Messages.init({
+module.exports = (sequelize) => 
+Messages.init(
+    {
         body: {
-            type: Datatypes.VARCHAR(500),
+            type: DataTypes.STRING,
             allowNull: false,
         }
     },
@@ -14,4 +16,4 @@ Messages.init({
         underscored: true,
         modelName: 'messages'
     }
-)
+);

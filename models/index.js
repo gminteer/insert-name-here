@@ -43,5 +43,5 @@ module.exports = (sequelize) => {
   Partnership.hasMany(Messages, {foreignKey: 'conversationId', as: 'conversation'});
   Messages.belongsTo(Partnership, {foreignKey: 'conversationId'});
 
-  return {User, Profile, Rating, Partnership, Skill, SkillRank, SkillSet};
+  return {User, Profile, Rating, Partnership, Skill, SkillRank, SkillSet, Messages};
 };
