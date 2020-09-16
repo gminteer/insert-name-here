@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-module.exports = (services, {auth}) => {
+module.exports = (services, {auth, validation}) => {
   // login page
   router.get('/login', (req, res) => {
     return res.render('user/login_signup', {login: true});
@@ -31,13 +31,18 @@ module.exports = (services, {auth}) => {
     return res.render('user/edit_profile', {user: req.session.user, profile});
   });
   // view a profile
-  router.get('/profile/:user_id', auth.mustBeInPartnership, async (req, res) => {
-    const {user_id: userId} = req.params;
-    const user = await services.user.get(userId);
-    if (!user) return res.sendStatus(404);
-    const profile = await services.profile.get(userId);
-    return res.render('user/view_profile', {profile});
-  });
+  router.get(
+    '/profile/:user_id',
+    validation.userIdMustExist,
+    auth.mustBeInPartnership,
+    async (req, res) => {
+      const {user_id: userId} = req.params;
+      const profile = await services.profile.get(userId);
+      const knownSkills = await services.skillset.get(userId, 'KNOWN');
+      const wantedSkills = await services.skillset.get(userId, 'WANTED');
+      return res.render('user/view_profile', {profile, knownSkills, wantedSkills});
+    }
+  );
   // view messages
   router.get('/messages', auth.mustBeLoggedIn, async (req, res) => {
     const messages = await services.messages.get(req.session.user.id);

@@ -23,8 +23,8 @@ module.exports = (_, {User, Profile}) => ({
   async update(userId, profileData) {
     const [profile] = await Profile.findOrCreate({where: {userId}});
     Object.entries(profileData)
-      .filter(([key, value]) => PROFILE_COLUMNS.includes(key) && (value || value === ''))
-      .forEach(([key, value]) => (profile[key] = value));
+      .filter(([key]) => PROFILE_COLUMNS.includes(key))
+      .forEach(([key, value]) => (profile[key] = value ? value : null));
     await profile.save();
     return profile.get({plain: true});
   },

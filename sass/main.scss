@@ -11,5 +11,6 @@ $tablet: 768px; // Bulma default tablet breakpoint is 1px larger than Chrome Dev
 
 // @import './path/to/style.scss' and/or add styles here.
 
+@import './star-widget.scss';
 @import './user/login-signup-form.scss';
 @import './user/profile.scss';

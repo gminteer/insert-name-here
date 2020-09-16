@@ -3,7 +3,7 @@
     <div class="card profile mt-6">
       {{> user/profile_header profile}}
       <div class="level">
-        {{#if (owns_resource session this)}}
+        {{#if (owns_resource session profile)}}
         <div class="level-left">
           {{/if}} {{! autoformatter is getting the indent level wrong here}}
           <div class="level-item tabs is-boxed">
@@ -38,20 +38,27 @@
           {{#if (owns_resource session profile)}} {{! autoformatter is getting the indent level wrong here}}
         </div>
         <div class="level-right">
-          <a class="button" href="/user/profile/edit">Edit</a>
+          <a class="button" href="/user/profile/edit">Change Profile</a>
+          <a class="button" href="/user/skills/known/edit">Change Known Skills</a>
+          <a class="button" href="/user/skills/wanted/edit">Change Wanted Skills</a>
         </div>
         {{/if}}
       </div>
-      {{#if knownSkills}}
       <div class="card-content">
-        {{> skill/skillset knownSkills title="Known Skills"}}
+        <div class="columns is-mobile is-centered">
+          {{#if knownSkills}}
+          <div class="column">
+            {{> skill/skillset knownSkills title="Known Skills"}}
+          </div>
+          {{/if}}
+          {{#if wantedSkills}}
+          <div class="column">
+            {{> skill/skillset wantedSkills title="Wanted Skills"}}
+          </div>
+          {{/if}}
+        </div>
       </div>
-      {{/if}}
-      {{#if wantedSkills}}
-      <div class="card-content">
-        {{> skill/skillset wantedSkills title="Wanted Skills"}}
-      </div>
-      {{/if}}
     </div>
   </div>
 </div>
+<script src="/assets/js/profile/skill-rank-widget.js"></script>
