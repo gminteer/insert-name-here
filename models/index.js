@@ -6,6 +6,7 @@ module.exports = (sequelize) => {
   const Skill = require('./skill')(sequelize);
   const SkillRank = require('./skillrank')(sequelize);
   const SkillSet = require('./skillset')(sequelize);
+  const Messages = require('./messages')(sequelize);
 
   // -- Relationships
   // User <-> Profile
@@ -35,6 +36,12 @@ module.exports = (sequelize) => {
   User.belongsTo(SkillSet, {foreignKey: 'knownSkillsetId'});
   SkillSet.hasOne(User, {foreignKey: 'wantedSkillsetId', as: 'wantedSkillset'});
   User.belongsTo(SkillSet, {foreignKey: 'wantedSkillsetId'});
+  // Messages <-> User
+  User.hasMany(Messages, {foreignKey: 'authorId', as: 'author'});
+  Messages.belongsTo(User, {foreignKey: 'authorId'});
+  // Messages <-> Partnership
+  Partnership.hasMany(Messages, {foreignKey: 'conversationId', as: 'conversation'});
+  Messages.belongsTo(Partnership, {foreignKey: 'conversationId'});
 
-  return {User, Profile, Rating, Partnership, Skill, SkillRank, SkillSet};
+  return {User, Profile, Rating, Partnership, Skill, SkillRank, SkillSet, Messages};
 };
