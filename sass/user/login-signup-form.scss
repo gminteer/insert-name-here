@@ -1,0 +1,14 @@
+@import '../color-scheme/main.scss';
+
+.card.login {
+  background-color: $primary-light;
+  .card-header {
+    background-color: $primary;
+  }
+  .input {
+    background-color: $scheme-main;
+  }
+  .button {
+    background-color: $primary-light-ter;
+  }
+}

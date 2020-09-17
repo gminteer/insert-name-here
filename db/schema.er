@@ -1,0 +1,71 @@
+#entities
+[users]
+*id {label: "int, not null"}
+username {label: "varchar(30), unique, not null"}
+email {label: "varchar, unique, not null"}
+password {label: "varchar, not null"}
+first_name {label: "varchar"}
+last_name {label: "varchar"}
+created_at {label: "datetime"}
+updated_at {label: "datetime"}
+
+[profiles]
+*id {label: "int, not null"}
+github {label: "varchar, isUrl"}
+linked_in {label: "varchar, isUrl"}
+picture {label: "varchar, isUrl"}
+profile {label: "varchar, isUrl"}
+resume {label: "varchar, isUrl"}
+created_at {label: "datetime"}
+updated_at {label: "datetime"}
++user_id {label: "int, not null"}
+
+[skillranks]
+*id {label: "int, not null"}
+skill {label: "enum"}
+rank {label: "int, not null, min 0, max 10"}
++skillset_id {label: "int, not null"}
+
+[skillsets]
+*id {label: "int, not null"}
++user_id {label: "int"}
+
+[partnerships]
+*id {label: "int, not null"}
+primary_approved {label: "boolean"}
+secondary_approved {label: "boolean"}
+status {label: "enum"}
++primary_id {label: "int, not null"}
++seconary_id {label: "int, not null"}
+
+[messages]
+*id {label: "int, not null"}
+title {label: "varchar"}
+body {label: "text, not null"}
++partnership_id {label: "int, not null"}
++author_id {label: "int, not null"}
+
+[partnership_ratings]
+*id {label: "int, not null"}
+rating {label: "int, not null, min 0, max 10"}
++target_id {label: "int, not null"}
++partnership_id {label: "int, not null"}
+
+users 1--0 profiles
+
+users 1--0 skillsets {label: "wanted"}
+users 1--0 skillsets {label: "known"}
+
+skillranks +--1 skillsets
+
+users 1--* partnerships {label: "primary"}
+users 1--* partnerships {label: "secondary"}
+messages 0--* partnerships
+messages *--1 users {label: "author"}
+
+users 1--* partnership_ratings {label: "target"}
+partnerships 1--0 partnership_ratings {label: "a"}
+partnerships 1--0 partnership_ratings {label: "b"}
+
+users 1--* blacklists {label: "blocker"}
+users 1--* blacklists {label: "blocked_user"}

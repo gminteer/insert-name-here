@@ -32,6 +32,7 @@ module.exports = {
     'require-jsdoc': ['off'],
     'vars-on-top': ['warn'],
     'no-unused-vars': ['error', {varsIgnorePattern: '_'}],
+    'security/detect-object-injection': ['off'],
   },
   overrides: [
     {
@@ -47,12 +48,18 @@ module.exports = {
     },
     {
       files: ['static/**/*.js'],
-      plugins: ['compat'],
+      // plugins: ['compat'], something's up with eslint-plugin-compat "Unknown browser query `Baidu all`"
       env: {
         node: false,
         browser: true,
       },
-      extends: ['plugin:compat/recommended'],
+      // extends: ['plugin:compat/recommended'],
+    },
+    {
+      files: ['./postcss.config.js', 'bin/seed*'],
+      rules: {
+        'node/no-unpublished-require': ['error', {allowModules: devDependencies}],
+      },
     },
   ],
 };

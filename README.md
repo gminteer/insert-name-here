@@ -1,4 +1,4 @@
-# insert-name-here
+# Pair-Pro
 
 ![License: Apache-2.0](https://img.shields.io/badge/license-Apache%202.0-green.svg)
 
@@ -8,25 +8,43 @@
 
 ---
 
-TODO
+What if connecting mentors and aspiring and/or junior developers worked like a dating app? Or you could find a person who had the skillsets you needed for a project?
+
+No, wait, we're actually serious about this.
+
+Pair Pro is a place where you can go to find other developers with various skills.  The idea is that you will be “matched” with other developers who have the skills you are looking for, much like a modern day dating app, but for business.  
+
+Having an issue with node.js or are you super skilled at javascript and want to help others with projects?  Pair Pro is the site for you.
+
 
 ## Installation
 
 ---
 
-TODO
+- Clone this repository.
+- Run `npm install`.
+- Create an .env file in the project route (.env.example lays out what environment variables need to be set)
 
 ## Usage
 
 ---
 
-TODO
+### Production
+
+You should be able to push to Heroku without needing to do anything manually (you'll need to `git push heroku (YOUR LOCAL BRANCH):master` if you want to test a branch without opening a PR)
+
+---
+
+### Development
+
+- `npm run start:dev` will launch with nodemon for hot-reloading support.
+- `npm run watch` will launch webpack in watch mode for hot-recompiling style changes (you have to manually hit refresh in the browser though)
 
 ## License
 
 ---
 
-Copyright 2020 gminteer@gmail.com
+Copyright 2020 [Pair-Pro]
 
 Licensed under the Apache-2.0 License (the "License");
 you may not use this file except in compliance with the License.
@@ -42,6 +60,6 @@ limitations under the License.
 
 ## Tests
 
-TODO
+TODO: I haven't actually written any tests, but jest and supertest are set up as DevDependencies and eslint's configured if anyone actually wants to write unit tests.
 
 ![Powered by <3 emojis](https://img.shields.io/badge/made%20with-%F0%9F%92%96-lightgrey.svg)

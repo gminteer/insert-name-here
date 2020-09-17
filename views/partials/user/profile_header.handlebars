@@ -1,0 +1,19 @@
+<section class="card-header py-3">
+  <div class="media mx-4 my-4">
+    <div class="media-left">
+      <figure class="image is-96x96">
+        {{#if picture}}
+        <img src={{picture}} alt="{{user.username}}'s profile image">
+        {{else}}
+        <img src="/assets/img/no-user-pic.jpg" alt="placeholder">
+        {{/if}}
+      </figure>
+    </div>
+    <div class="media-content">
+      <h2 class="title is-4 mb-0">{{#if (has_name this)}}{{full_name this}}
+        ({{user.username}}){{else}}{{user.username}}{{/if}}
+      </h2>
+      <p class="subtitle is-6 my-0">Member for {{relative_time user.createdAt}}</p>
+    </div>
+  </div>
+</section>
