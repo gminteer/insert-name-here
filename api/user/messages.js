@@ -1,6 +1,8 @@
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(process.env.JAWSDB_URL);
 const router = require('express').Router();
 const { Op } = require('sequelize');
-const Messages = require('../../models/messages');
+const Messages = require('../../models/messages')(sequelize);
 
 module.exports = (services, middleware) => {
 // get all messages for the one user
@@ -17,7 +19,7 @@ router.get('/:user_Id', (req, res) => {
             ]
         })
         .then(dbMessages => {
-            if (!dbMessages) {
+            if (dbMessages.length < 1) {
                 return res.json({message: 'No Messages'});
             }
             res.json(dbMessages);
