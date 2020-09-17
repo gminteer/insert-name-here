@@ -39,7 +39,9 @@
   "repository": "github:gminteer/insert-name-here",
   "author": "",
   "contributors": [
-    "Greg Minteer <gminteer@gmail.com> (https://gminteer.github.io)"
+    "Greg Minteer <gminteer@gmail.com> (https://gminteer.github.io)",
+    "Josh Hall <joshua.allan.hall@gmail.com> (https://jahallb1.github.io)",
+    "Shaun Mardones <shaun.mardones@gmail.com> (https://smardones.github.io)"
   ],
   "license": "Apache-2.0",
   "bugs": {
@@ -83,6 +85,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
     "express-session": "^1.17.1",
+    "jquery-bar-rating": "^1.2.2",
     "inflection": "^1.12.0",
     "luxon": "^1.25.0",
     "markdown-it": "^11.0.0",

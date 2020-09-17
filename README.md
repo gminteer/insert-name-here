@@ -8,9 +8,14 @@
 
 ---
 
-What if connecting mentors and aspiring and/or junior developers worked like a dating app?
+What if connecting mentors and aspiring and/or junior developers worked like a dating app? Or you could find a person who had the skillsets you needed for a project?
 
 No, wait, we're actually serious about this.
+
+Pair Pro is a place where you can go to find other developers with various skills.  The idea is that you will be “matched” with other developers who have the skills you are looking for, much like a modern day dating app, but for business.  
+
+Having an issue with node.js or are you super skilled at javascript and want to help others with projects?  Pair Pro is the site for you.
+
 
 ## Installation
 
@@ -39,7 +44,7 @@ You should be able to push to Heroku without needing to do anything manually (yo
 
 ---
 
-Copyright 2020 [insert names here]
+Copyright 2020 [Pair-Pro]
 
 Licensed under the Apache-2.0 License (the "License");
 you may not use this file except in compliance with the License.
