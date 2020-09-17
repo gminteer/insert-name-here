@@ -1,0 +1,49 @@
+<div class="columns is-mobile is-centered">
+  <div class="column is-11">
+    <div class="card login mt-6">
+      <section class="card-header">
+        {{#if login}}
+        <p class="card-header-title is-centered">Don't have an account? <a class="ml-3" href="/user/signup">Sign up
+            instead.</a></p>
+        {{else}}
+        <p class="card-header-title is-centered">Already have an account? <a class="ml-3" href="/user/login">Log in
+            instead.</a></p>
+        {{/if}}
+      </section>
+      <section class="card-content">
+        <form id="login-signup" data-type={{#if login}}"login"{{else}}"signup"{{/if}}>
+          <div class="field">
+            <label class="label" for="username">Username</label>
+            <div class="control"><input class="input" type="text" name="username" id="username" autocomplete="username">
+            </div>
+          </div>
+          {{#unless login}}
+          <div class="field">
+            <label class="label" for="email">Email</label>
+            <div class="control"><input class="input" type="email" name="email" id="email" autocomplete="email"></div>
+          </div>
+          {{/unless}}
+          <div class="field">
+            <label class="label" for="password">Password</label>
+            {{#if login}}
+            <div class="control"><input class="input" type="password" name="password" id="password"
+                autocomplete="current-password"></div>
+            {{else}}
+            <div class="control"><input class="input" type="password" name="password" id="password"
+                autocomplete="new-password"></div>
+            {{/if}}
+          </div>
+          {{#unless login}}
+          <div class="field">
+            <label class="label" for="confirm-password">Confirm password</label>
+            <div class="control"><input class="input" type="password" name="password" id="confirm-password"
+                autocomplete="new-password"></div>
+          </div>
+          {{/unless}}
+          <button class="button" type="submit">Log In</button>
+        </form>
+      </section>
+      <script src="/assets/js/user/login-signup.js" type="module"></script>
+    </div>
+  </div>
+</div>

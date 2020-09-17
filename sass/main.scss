@@ -1,0 +1,15 @@
+@charset "utf-8";
+@import '~bulma/sass/utilities/initial-variables';
+
+// change Bulma defaults here
+@import './color-scheme/main.scss';
+@import './color-scheme/navbar.scss';
+
+$tablet: 768px; // Bulma default tablet breakpoint is 1px larger than Chrome Dev Tools and I have no idea why
+
+@import '~bulma/bulma';
+
+// @import './path/to/style.scss' and/or add styles here.
+
+@import './user/login-signup-form.scss';
+@import './user/profile.scss';

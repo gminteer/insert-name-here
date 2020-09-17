@@ -1,0 +1,16 @@
+<div class="columns is-mobile is-centered">
+  <div class="column is-11">
+    {{#each partners}}
+    <div class="card">
+      {{> user/profile_header}}
+      <div class="card-content">
+        <div class="level">
+          <a class="level-item" href="profile/{{userId}}">View Profile</a>
+          <a class="level-item">Message</a>
+          <a class="level-item">Block</a>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

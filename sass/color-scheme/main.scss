@@ -1,0 +1,89 @@
+@mixin color-helpers($name, $color) {
+  .has-background-#{$name} {
+    background-color: $color;
+  }
+  .has-text-#{$name} {
+    color: $color;
+  }
+}
+
+$color-scheme: (
+  'cerulean-frost': #6096ba,
+  'battleship-grey': #8b8c89,
+  'yale-blue': #274c77,
+  'columbia-blue': #c0d6df,
+  'alice-blue': #e7ecef,
+);
+
+@each $name, $color in $color-scheme {
+  @include color-helpers($name, $color);
+}
+
+// these directly change Bulma defaults
+$primary:map-get(
+  $map: $color-scheme,
+  $key: 'cerulean-frost',
+);
+
+$primary-invert: $white;
+
+$scheme-main: map-get(
+  $map: $color-scheme,
+  $key: 'alice-blue',
+);
+$scheme-main-bis: adjust-color(
+  $color: $scheme-main,
+  $lightness: -3%,
+);
+$scheme-main-ter: adjust-color(
+  $color: $scheme-main,
+  $lightness: -6%,
+);
+
+// these do not
+$primary-light: map-get(
+  $map: $color-scheme,
+  $key: 'battleship-grey',
+);
+$secondary: map-get(
+  $map: $color-scheme,
+  $key: 'yale-blue',
+);
+$secondary-light: map-get(
+  $map: $color-scheme,
+  $key: 'columbia-blue',
+);
+
+// no direct color assignments past this line
+$primary-bis: adjust-color(
+  $color: $primary,
+  $lightness: -3%,
+);
+$primary-ter: adjust-color(
+  $color: $primary,
+  $lightness: -6%,
+);
+$primary-light-bis: adjust-color(
+  $color: $primary-light,
+  $lightness: -3%,
+);
+$primary-light-ter: adjust-color(
+  $color: $primary-light,
+  $lightness: -6%,
+);
+$secondary-bis: adjust-color(
+  $color: $secondary,
+  $lightness: -3%,
+);
+$secondary-ter: adjust-color(
+  $color: $secondary,
+  $lightness: -6%,
+);
+$secondary-light-bis: adjust-color(
+  $color: $secondary-light,
+  $lightness: -3%,
+);
+$secondary-light-ter: adjust-color(
+  $color: $secondary-light,
+  $lightness: -6%,
+);

@@ -7,9 +7,14 @@
   },
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "build": "webpack",
     "start": "node server.js",
-    "start:dev": "nodemon"
+    "start:dev": "nodemon",
+    "test": "jest",
+    "watch": "webpack --watch"
+  },
+  "bin": {
+    "seed": "bin/seed"
   },
   "jest": {
     "collectCoverage": true,
@@ -31,17 +36,21 @@
       "util/**"
     ]
   },
-  "repository": "github:insert-username-here/insert-name-here",
+  "repository": "github:gminteer/insert-name-here",
   "author": "",
   "contributors": [
     "Greg Minteer <gminteer@gmail.com> (https://gminteer.github.io)"
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/insert-username-here/insert-name-here/issues"
+    "url": "https://github.com/gminteer/insert-name-here/issues"
   },
-  "homepage": "https://github.com/insert-username-here/insert-name-here#readme",
+  "homepage": "https://github.com/gminteer/insert-name-here#readme",
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.3.0",
+    "autoprefixer": "^9.8.6",
+    "bulma": "^0.9.0",
+    "css-loader": "^4.3.0",
     "eslint": "^7.8.1",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.11.0",
@@ -52,11 +61,20 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
+    "extract-loader": "^5.1.0",
+    "faker": "^5.1.0",
+    "file-loader": "^6.1.0",
+    "handlebars-loader": "^1.7.1",
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
+    "postcss-loader": "^4.0.1",
     "prettier": "^2.1.1",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
     "superagent": "^6.1.0",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -66,7 +84,11 @@
     "express-handlebars": "^5.1.0",
     "express-session": "^1.17.1",
     "jquery-bar-rating": "^1.2.2",
+    "inflection": "^1.12.0",
+    "luxon": "^1.25.0",
+    "markdown-it": "^11.0.0",
     "mysql2": "^2.1.0",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "style-loader": "^1.2.1"
   }
 }
