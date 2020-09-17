@@ -5,7 +5,8 @@
         <div class="stored-messages">
             <h2>Messages</h2>
             <ul class="messages-list">
-              {{#each}}
+              {{#each existingMessages}}
+              <li>{{body}}</li>
               {{/each}}
             </ul>
         </div>

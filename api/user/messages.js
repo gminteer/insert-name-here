@@ -20,15 +20,20 @@ router.get('/:user_Id', (req, res) => {
         })
         .then(dbMessages => {
             if (dbMessages.length < 1) {
-                return res.json({message: 'No Messages'});
+                return res.render('message_screen', {existingMessages: ['No Messages']});
             }
-            res.json(dbMessages);
+            res.render('message_screen', {existingMessages: dbMessages});
         })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         });
 });
+
+// router.post("/:", (req, res) => {
+
+// })
+
 return router;
 };
 
