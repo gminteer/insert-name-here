@@ -1,0 +1,10 @@
+{{> skill/skillset skills type=this.type}}
+<div class="add-skill-container">
+  <label for="new-skill">Add a skill:</label>
+  <select name="new-skill" id="new-skill">
+    <option value="DEFAULT" selected="selected" disabled="disabled">Select a skill</option>
+  </select>
+  {{>star_rating id="new-rating"}}
+  <button class="button" id="add-skill-button">Add</button>
+</div>
+<script src="/assets/js/profile/skill-rank.js" data-user-id="{{session.user.id}}"></script>

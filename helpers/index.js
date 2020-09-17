@@ -1,12 +1,17 @@
 const {inflect} = require('inflection');
 const {DateTime} = require('luxon');
 
+const SKILLPAGE_TYPES = {KNOWN: 'Known Skills', WANTED: 'Wanted Skills'};
+
 module.exports = () => ({
   full_name({firstName, lastName}) {
     return [firstName, lastName]
       .filter((name) => name)
       .reduce((acc, name) => (acc += `${name} `), '')
       .trim();
+  },
+  get_editskillpage_title(type) {
+    return SKILLPAGE_TYPES[type];
   },
   has_name(thing) {
     if (!thing) return;
