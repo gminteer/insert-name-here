@@ -58,4 +58,12 @@ module.exports = (_, {User, Skill, SkillRank, SkillSet}) => ({
       .map((skill) => skill.get({plain: true}));
     return unusedSkills;
   },
+  async addSkill(userId, type, data) {
+    if (!userId || !Object.keys(TYPES).includes(type)) return;
+    const [[skillId, rank]] = Object.entries(data);
+    const user = await User.findOne({where: {id: userId}});
+    const [skillset] = await SkillSet.findOrCreate({where: {id: user[TYPES[type]]}});
+    const skillRank = await SkillRank.create({skillsetId: skillset.id, skillId, rank});
+    return skillRank.get({plain: true});
+  },
 });
