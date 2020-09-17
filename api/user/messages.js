@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Messages, Partnership } = require('../../models');
 const { Op } = require('sequelize');
+const { Messages, Partnership } = require('../../models');
 
-
+module.exports = (services, middleware) => {
 // get all messages for the one user
-router.get('/messages/:userId', (req, res) => {
-    const userId = req.params.userId;
+router.get('/:user_Id', (req, res) => {
+    const userId = req.params;
     const userPartnerships = services.partnership.getUserPartnerships(userId).map((partnership) => ({partnershipId: partnership.id}));
     Messages.findAll(
         {
@@ -17,10 +17,19 @@ router.get('/messages/:userId', (req, res) => {
             ]
         })
         .then(dbMessages => {
-            if (!dbMessage) {
-                return 
+            if (!dbMessages) {
+                return res.json({message: 'No Messages'});
             }
             res.json(dbMessages);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
         });
 });
+return router;
+};
+
+
+
 

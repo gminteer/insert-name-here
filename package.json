@@ -7,7 +7,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && bin/seed",
     "start": "node server.js",
     "start:dev": "nodemon",
     "test": "jest",
