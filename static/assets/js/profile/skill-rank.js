@@ -50,9 +50,20 @@ window.addEventListener('DOMContentLoaded', async () => {
       $option.textContent = skill.name;
       $newSkill.appendChild($option);
     });
-    document.querySelector('#add-skill-button').addEventListener('click', () => {
+    document.querySelector('#add-skill-button').addEventListener('click', async () => {
+      const $changeBtn = document.querySelector('#change-skills');
+      const path = $changeBtn.dataset.type.toLowerCase();
       const $rating = document.querySelector('#new-rating');
       const rank = $rating.querySelector('input[type="radio"]:checked').value;
+      if ($newSkill.value === 'DEFAULT') return;
+      const response = await fetch(`/api/v1/skillset/${path}/${userId}/add`, {
+        method: 'PUT',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({[$newSkill.value]: rank}),
+      });
+      const resData = await response.json();
+      if (!response.ok) return console.error(resData.message);
+      window.location.reload();
     });
   }
 });

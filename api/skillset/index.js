@@ -37,6 +37,24 @@ module.exports = ({skillset: skillsetSvc}, {auth, validation}, handleErr) => {
       handleErr(req, res, err);
     }
   });
+  router.put('/known/:user_id/add', auth.mustOwnEndpoint, async (req, res) => {
+    try {
+      const {user_id: userId} = req.params;
+      const addedSkill = await skillsetSvc.addSkill(userId, 'KNOWN', req.body);
+      return res.json(addedSkill);
+    } catch (err) {
+      handleErr(req, res, err);
+    }
+  });
+  router.put('/wanted/:user_id/add', auth.mustOwnEndpoint, async (req, res) => {
+    try {
+      const {user_id: userId} = req.params;
+      const addedSkill = await skillsetSvc.addSkill(userId, 'WANTED', req.body);
+      return res.json(addedSkill);
+    } catch (err) {
+      handleErr(req, res, err);
+    }
+  });
   router.put('/known/:user_id', auth.mustOwnEndpoint, async (req, res) => {
     try {
       const {user_id: userId} = req.params;
