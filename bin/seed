@@ -4,9 +4,9 @@ const faker = require('faker');
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(process.env.JAWSDB_URL);
-const {User, Profile, Partnership, Skill, SkillRank, SkillSet} = require('../models')(sequelize);
+const {User, Profile, Partnership, Skill, SkillRank, SkillSet, Messages} = require('../models')(sequelize);
 
-const COUNT = 16;
+const COUNT = 15;
 const SKILLS = [
   'HTML',
   'CSS',
@@ -36,6 +36,27 @@ const SKILLS = [
   // seed skills table
   SKILLS.forEach(async (skill) => await Skill.create({name: skill}));
 
+  // hard coded demo user
+  const user = await User.create({username: 'demo', email: 'a@b.com', password: 'password'});
+  await Profile.create({
+    userId: 1,
+    firstName: 'Demo',
+    lastName: 'Account',
+    picture: faker.internet.avatar(),
+  });
+  const knownSkills = await SkillSet.create();
+  const wantedSkills = await SkillSet.create();
+  user.knownSkillsetId = knownSkills.id;
+  user.wantedSkillsetId = wantedSkills.id;
+  for (let i = 0; i < SKILLS.length; i++) {
+    const skill = await Skill.findOne({where: {name: SKILLS[i]}});
+    await SkillRank.create({
+      skillsetId: Math.random() > 0.5 ? knownSkills.id : wantedSkills.id,
+      skillId: skill.id,
+      rank: Math.floor(Math.random() * 11),
+    });
+  }
+  await user.save();
   for (const _ of Array(COUNT).keys()) {
     // create user
     const firstName = faker.name.firstName();
@@ -75,7 +96,7 @@ const SKILLS = [
     }
     await user.save();
   }
-  // create some partnerships
+  // create some partnerships with the demo user
   for (let i = 2; i < 17; i++) {
     const status = ['MATCHED', 'ACTIVE', 'BLOCKED', 'CLOSED'][i % 4];
     if (i % 2) await Partnership.create({status, primaryId: 1, secondaryId: i});

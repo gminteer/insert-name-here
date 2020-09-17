@@ -5,14 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/assets/css/style.css">
-  <title>{{appName}}.html</title>
+  <title>pair.pro</title>
 </head>
 
 <body>
+  <script src="https://use.fontawesome.com/3636289a8c.js"></script>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item title is-1 mb-0" href="/">
-        <h1>&#x7B;&#x7B;{{appName}}&#x7D;&#x7D;</h1>
+        <h1>pair.pro</h1>
       </a>
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
         <span aria-hidden="true"></span>
@@ -25,7 +26,7 @@
       <div class="navbar-start">
         {{#if session.isLoggedIn}}
         <a class="navbar-item subtitle is-3 mb-0" href="/user/dashboard">Dashboard</a>
-        <a class="navbar-item subtitle is-3 mb-0" href="/user/messages">Messages</a>
+        <a class="navbar-item subtitle is-3 mb-0" href="/user/message_screen">Messages</a>
         {{/if}}
       </div>
       <div class="navbar-end">

@@ -1,6 +1,7 @@
-<h3>{{title}}</h3>
-<ul>
+<h3>{{get_editskillpage_title type}}</h3>
+<table class="table">
   {{#each this}}
   {{> skill/skillrank}}
   {{/each}}
-</ul>
+  <button class="button is-hidden" data-type="{{type}}" id="change-skills">Update skills</button>
+</table>

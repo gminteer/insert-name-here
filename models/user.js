@@ -34,7 +34,7 @@ module.exports = (sequelize) =>
         },
         beforeBulkUpdate: async (instances) => {
           for (const instance of instances) {
-            if (instance.changed().inclues('password'))
+            if (instance.changed().includes('password'))
               instance.password = await instance.setPassword(instance.password);
           }
         },

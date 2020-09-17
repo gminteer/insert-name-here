@@ -1,6 +1,6 @@
 const USER_COLUMNS = ['username', 'password', 'email'];
 
-module.exports = (_, {User}) => ({
+module.exports = (_, {User, Profile}) => ({
   async get(id) {
     if (id) {
       const user = await User.findOne({
@@ -20,6 +20,7 @@ module.exports = (_, {User}) => ({
       Object.entries(userData).filter(([key]) => USER_COLUMNS.includes(key))
     );
     const user = await User.create(sanitizedData);
+    await Profile.create({userId: user.id});
     return user.get({plain: true});
   },
 
