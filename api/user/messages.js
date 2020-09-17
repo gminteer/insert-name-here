@@ -1,12 +1,14 @@
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(process.env.JAWSDB_URL);
 const router = require('express').Router();
-const { Messages, Partnership } = require('../../models');
 const { Op } = require('sequelize');
+const Messages = require('../../models/messages')(sequelize);
 
-
+module.exports = (services, middleware) => {
 // get all messages for the one user
-router.get('/messages/:userId', (req, res) => {
-    const userId = req.params.userId;
-    const userPartnerships = services.partnership.getUserPartnerships(userId).map((partnership) => ({partnershipId: partnership.id}));
+router.get('/:user_Id', (req, res) => {
+    const userId = req.params;
+    const userPartnerships = services.partnership.getUserPartnerships(userId).then(partnerArr => partnerArr.map((partnership) => ({partnershipId: partnership.id})));
     Messages.findAll(
         {
             where: {
@@ -17,10 +19,24 @@ router.get('/messages/:userId', (req, res) => {
             ]
         })
         .then(dbMessages => {
-            if (!dbMessage) {
-                return 
+            if (dbMessages.length < 1) {
+                return res.render('message_screen', {existingMessages: ['No Messages']});
             }
-            res.json(dbMessages);
+            res.render('message_screen', {existingMessages: dbMessages});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
         });
 });
+
+// router.post("/:", (req, res) => {
+
+// })
+
+return router;
+};
+
+
+
 
