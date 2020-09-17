@@ -30,6 +30,14 @@ module.exports = (services, {auth, validation}) => {
     const profile = await services.profile.get(req.session.user.id);
     return res.render('user/edit_profile', {user: req.session.user, profile});
   });
+  router.get('/skills/known/edit', auth.mustBeLoggedIn, async (req, res) => {
+    const skills = await services.skillset.get(req.session.user.id, 'KNOWN');
+    return res.render('user/edit_skillset', {skills, type: 'KNOWN'});
+  });
+  router.get('/skills/wanted/edit', auth.mustBeLoggedIn, async (req, res) => {
+    const skills = await services.skillset.get(req.session.user.id, 'WANTED');
+    return res.render('user/edit_skillset', {skills, type: 'WANTED'});
+  });
   // view a profile
   router.get(
     '/profile/:user_id',

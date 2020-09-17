@@ -1,6 +1,9 @@
 {{#if skill.name}}
-<tr>
+<tr class="rating-row" data-skill-id="{{skill.id}}">
   <td>{{skill.name}}</td>
   <td>{{> star_rating}}</td>
+  <td class="is-hidden delete-button">
+    <button class="button" data-skill-id="{{skill.id}}">Remove</button>
+  </td>
 </tr>
 {{/if}}
